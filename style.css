@@ -1,0 +1,9 @@
+.color{
+    border: black solid 1px;
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+}
+.color:first-child{
+    background-color: black;
+}
