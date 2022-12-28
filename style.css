@@ -3,7 +3,19 @@
     display: inline-block;
     height: 30px;
     width: 30px;
+    position: relative;
+    left: 41%;
 }
 .color:first-child{
     background-color: black;
+}
+.title {
+    text-align: center;
+}
+.input {
+    position: fixed;
+    left: 32%;
+}
+.btn {
+    cursor: pointer;
 }

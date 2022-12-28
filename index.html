@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <link rel="stylesheet" href="style.css">
@@ -10,16 +10,20 @@
 </head>
 
 <body>
-    <h1 id="title">Paleta de Cores</h1>
+    <h1 id="title" class="title">Paleta de Cores</h1>
     <section>
         <ul id="color-palette">
-            <li class="color"></li>
-            <li class="color"></li>
-            <li class="color"></li>
-            <li class="color"></li>
+            <li class="color selected" id="color1"></li>
+            <li class="color" id="color2"></li>
+            <li class="color" id="color3"></li>
+            <li class="color" id="color4"></li>
         </ul>
     </section>
-    <button id="button-random-color" onclick=generateColors()>Cores aleatórias</button>
+    <div class="input">
+        <button id="button-random-color" class="btn">Cores aleatórias</button>
+        <button id="clear-board" class="btn">Limpar</button>
+        <input type="text" placeholder="Quadrados">
+    </div>
     <script src="script.js"></script>
 </body>
 
