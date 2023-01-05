@@ -1,3 +1,4 @@
+let colorBlack = document.getElementById("color1");
 function generateColors() {
     const randomColors = "0123456789ABCDEF"
     let color = "#"
@@ -13,6 +14,7 @@ document.getElementById("button-random-color").addEventListener("click", () =>{
         let element = document.getElementById(`color${index}`);
         element.style.backgroundColor = generateColors();
     }
+    colorBlack.style.backgroundColor = "black";
 } )
 
     document.getElementById("clear-board").addEventListener("click", () =>{
