@@ -1,8 +1,16 @@
 .color{
     border: black solid 1px;
     display: inline-block;
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
+    position: relative;
+    left: 41%;
+}
+.pixel {
+    border: black solid 1px;
+    display: inline-block;
+    height: 40px;
+    width: 40px;
     position: relative;
     left: 41%;
 }
@@ -15,7 +23,11 @@
 .input {
     position: fixed;
     left: 32%;
+    display: block;
 }
 .btn {
     cursor: pointer;
+}
+.marginTop {
+    margin-top: 70px;
 }
