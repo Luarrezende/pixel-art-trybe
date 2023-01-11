@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 
@@ -14,8 +14,8 @@
     <section>
         <ul id="color-palette">
             <li class="color selected" id="color1"></li>
-            <li class="color" id="color2"></li>
-            <li class="color" id="color3"></li>
+            <li class="color o" id="color2"></li>
+            <li class="color u" id="color3"></li>
             <li class="color" id="color4"></li>
         </ul>
     </section>
@@ -23,11 +23,10 @@
         <button id="button-random-color" class="btn">Cores aleatórias</button>
         <button id="clear-board" class="btn">Limpar</button>
         <input type="text" placeholder="Quadrados" id="board-size">
-        <input type="button" value="VQV" id="generate-board">
+        <button id="generate-board">VQV</button>
     </div>
     <div class="marginTop">
-        <ul id="pixel-board">
-            <li class="pixel"></li>
+        <ul id="pixel-board" class="">
         </ul>
     </div>
     <script src="script.js"></script>

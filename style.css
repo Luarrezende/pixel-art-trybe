@@ -17,6 +17,12 @@
 .color:first-child{
     background-color: black;
 }
+.o {
+    background-color: red;
+}
+.u {
+    background-color: green;
+}
 .title {
     text-align: center;
 }
