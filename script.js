@@ -5,6 +5,15 @@ const color2 = document.getElementById('color2');
 const color3 = document.getElementById('color3');
 const color4 = document.getElementById('color4');
 const btn = document.getElementById('button-random-color');
+const nome = document.querySelectorAll('.color');
+let colorPalette = document.getElementById("color-palette");
+let lista = null;
+let corSelecionada = 'black';
+
+color2.style.backgroundColor = "red";
+color3.style.backgroundColor = "blue";
+color4.style.backgroundColor = "green";
+
 function generateColors() {
   const randomColors = '0123456789ABCDEF';
   let color = '#';
@@ -15,47 +24,74 @@ function generateColors() {
   return color;
 }
 
-const board = document.getElementById('pixel-board');
-for (let index = 1; index <=25; index += 1) {
-  const lista = document.createElement('div');
-  lista.className = 'pixel';
-  lista.style.height = '40px';
-  lista.style.width = '40px';
-  lista.style.border = 'black solid 1px';
-  lista.style.backgroundColor = 'white';
-  lista.style.display = 'inline-block';
-  lista.style.position = 'relative';
-  lista.style.left = '39%';
-  board.appendChild(lista);
-  if (index === 5) {
-    const quebra = document.createElement('br');
-    board.appendChild(quebra);
-  } else if (index === 10) {
-    const quebra = document.createElement('br');
-    board.appendChild(quebra);
-  } else if (index === 15) {
-    const quebra = document.createElement('br');
-    board.appendChild(quebra);
-  } else if (index === 20) {
-    const quebra = document.createElement('br');
-    board.appendChild(quebra);
+document.getElementById('button-random-color').addEventListener('click', () => {
+  const arrayColors = ["black"];
+
+  function regenerateIfExists(color) {
+    if (arrayColors.includes(color)) return generateColors()
+    return color
   }
+
+  for (let index = 1; index < nome.length; index += 1) {
+    const element = nome[index];
+
+    let generatedColor = generateColors()
+    let color = regenerateIfExists(generatedColor)
+
+    element.style.backgroundColor = color;
+    arrayColors.push(color)
+  }
+  localStorage.setItem("colorPalette", JSON.stringify(arrayColors));
+});
+const getLocal = localStorage.getItem("colorPalette")
+if (getLocal && getLocal.length) {
+  JSON.parse(getLocal).forEach((color, index) => {
+    const element = nome[index]
+    element.style.backgroundColor = color;
+  });
+};
+
+const board = document.getElementById('pixel-board');
+let guardaPixel = [];
+const getPixel = localStorage.getItem("guardaPixel")
+if (getPixel && getPixel.length) {
+  guardaPixel = JSON.parse(getPixel);
+};
+for (let index = 1; index <= 25; index += 1) {
+  lista = document.createElement('div');
+  lista.className = 'pixel';
+  if (guardaPixel[index]) {
+    lista.style.backgroundColor = guardaPixel[index]
+  }
+  board.appendChild(lista);
 }
 
-document.getElementById('button-random-color').addEventListener('click', () => {
-  const nome = document.querySelectorAll('.color');
-  for (let index = 0; index < nome.length; index += 1) {
-    const element = nome[index];
-    element.style.backgroundColor = generateColors();
+const pixel = document.querySelectorAll('.pixel');
+
+document.getElementById('clear-board').addEventListener('click', () => {
+  localStorage.removeItem('guardaPixel')
+  for (let index = 0; index < pixel.length; index += 1) {
+    pixel[index].style.backgroundColor = "white";
   }
-  if (color2.style.backgroundColor === color1.style.backgroundColor || color3.style.backgroundColor || color4.style.backgroundColor) {
-    color2.style.backgroundColor = generateColors();
-  } else if (color3.style.backgroundColor === color1.style.backgroundColor || color2.style.backgroundColor || color4.style.backgroundColor) {
-    color3.style.backgroundColor = generateColors();
-  } else if (color4.style.backgroundColor === color1.style.backgroundColor || color3.style.backgroundColor || color2.style.backgroundColor) {
-    color4.style.backgroundColor = generateColors();
-  } else if (color1 === color2 || color3 || color4) {
-    color1.style.backgroundColor = 'black';
-  }
-  color1.style.backgroundColor = 'black';
 });
+
+for (const element of nome) {
+  element.addEventListener('click', () => {
+    for (const element of nome) {
+      element.classList.remove('selected')
+    }
+    element.classList.add('selected')
+    const cor = window.getComputedStyle(element).backgroundColor
+    corSelecionada = cor
+  })
+}
+
+for (let index = 0; index < pixel.length; index += 1) {
+  pixel[index].addEventListener('click', () => {
+    if (corSelecionada !== null) {
+      pixel[index].style.backgroundColor = corSelecionada
+      guardaPixel[index] = corSelecionada
+      localStorage.setItem("guardaPixel", JSON.stringify(guardaPixel))
+    }
+  })
+}
